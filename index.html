@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Tandemonium has moved</title>
+<link rel="canonical" href="https://tandemonium.housetandem.com/">
+<style>body{margin:0;background:#1a1410;color:#f3e6cf;font:16px system-ui,sans-serif;display:grid;place-items:center;height:100vh;text-align:center}a{color:#f0b35a}</style>
+<noscript><meta http-equiv="refresh" content="0; url=https://tandemonium.housetandem.com/"></noscript>
+</head>
+<body>
+<p>Tandemonium has moved to <a id="to" href="https://tandemonium.housetandem.com/">tandemonium.housetandem.com</a>.<br>Taking you there with your saved rides…</p>
+<script>
+  // Fallback if the module below can't run: plain redirect, same path, no saved data.
+  window.__plain = 'https://tandemonium.housetandem.com' + location.pathname + location.search + location.hash;
+  document.getElementById('to').href = window.__plain;
+  window.__fallback = setTimeout(function () { location.replace(window.__plain); }, 4000);
+</script>
+<script type="module">
+  // Pack this browser's saved game data into the link so it survives the move (see domain-migrate.js).
+  import { readGameKeys, buildMigrateUrl } from '/domain-migrate.js';
+  const to = location.pathname + location.search + location.hash;
+  let url = null;
+  try { url = await buildMigrateUrl(readGameKeys(localStorage), to); } catch (e) { console.warn('[move] no saved data carried:', e); }
+  clearTimeout(window.__fallback);
+  location.replace(url || window.__plain);
+</script>
+</body>
+</html>
